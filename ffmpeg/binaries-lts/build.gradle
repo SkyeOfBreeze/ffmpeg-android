@@ -40,7 +40,7 @@ ext{
     libraryName = 'kotlin'
     artifact = 'binaries-lts'
 
-    libraryDescription = 'FFmpeg binaries for org.btelman.ffmpeg:core'
+    libraryDescription = 'FFmpeg wrapper with binary update utility functions'
 }
 
 apply from: '../../bintray.gradle'
