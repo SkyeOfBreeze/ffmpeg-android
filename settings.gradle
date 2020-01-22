@@ -1,2 +1,2 @@
-include ':app'
+include ':demo', ':ffmpeg'
 rootProject.name='FFmpegAndroid'
