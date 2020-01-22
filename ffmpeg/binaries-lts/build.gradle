@@ -8,8 +8,9 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode buildNumber
+        versionName versionSemantic
+        versionNameSuffix + '-' + gitHash
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -32,7 +33,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-    implementation 'org.btelman.logutil:logutil:1.0'
-    implementation 'org.btelman.android:shellutil:1.2'
 }
+
+ext{
+    publishedGroupId = 'org.btelman.ffmpeg'
+    libraryName = 'kotlin'
+    artifact = 'binaries-lts'
+
+    libraryDescription = 'FFmpeg binaries for org.btelman.ffmpeg:core'
+}
+
+apply from: '../../bintray.gradle'

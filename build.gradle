@@ -10,6 +10,10 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        //bintray
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -20,9 +24,41 @@ allprojects {
         google()
         jcenter()
         maven {
-            url  "https://dl.bintray.com/btelman96/maven"
+            url "https://dl.bintray.com/btelman96/maven"
         }
     }
+}
+
+def getGitHash = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+ext{
+    globalBuildToolsVersion = "28.0.3"
+    buildNumber = 1
+    gitHash = getGitHash()
+    versionSemantic = "1.0"
+
+    bintrayRepo = 'maven'
+    bintrayName = 'ffmpeg-android'
+
+    siteUrl = 'https://github.com/btelman96/ffmpeg-android'
+    gitUrl = 'https://github.com/btelman96/ffmpeg-android.git'
+
+    libraryVersion = "$versionSemantic"
+
+    developerId = 'btelman96'
+    developerName = 'Brendon Telman'
+    developerEmail = 'ffmpeg-lib@btelman.org'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
 
 task clean(type: Delete) {
