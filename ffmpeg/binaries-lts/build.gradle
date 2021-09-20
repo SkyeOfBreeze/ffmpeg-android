@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'com.github.dcendents.android-maven' TODO re-enable support for detached build
 android {
     compileSdkVersion 28
 
@@ -22,6 +23,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '30.0.3'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
 }
 
@@ -37,5 +43,3 @@ ext{
 
     libraryDescription = 'FFmpeg wrapper with binary update utility functions'
 }
-
-apply from: '../../bintray.gradle'
