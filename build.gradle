@@ -34,9 +34,9 @@ def getGitHash = { ->
 
 ext{
     globalBuildToolsVersion = "28.0.3"
-    buildNumber = 5
+    buildNumber = 6
     gitHash = getGitHash()
-    versionSemantic = "1.1.1"
+    versionSemantic = "1.2.0"
 
     bintrayRepo = 'maven'
     bintrayName = 'ffmpeg-android'
